@@ -16,6 +16,7 @@ setup(
     url='https://github.com/pragmatic-dash/dash-id-utils',
     license='MIT',
     packages=find_packages(),
+    long_description_content_type='text/markdown',
     classifiers=[
         "Programming Language :: Python :: 3",
     ],
