@@ -1,5 +1,8 @@
 from copy import copy
+import json
+
 from dash import ALL, Output, Input, State
+
 
 __all__ = ["DashIDGenerator", "DashIDWrapper"]
 
@@ -19,6 +22,11 @@ class DashIDWrapper:
 
     def get_state(self, property):
         return State(self.get_identifier(), property)
+    
+    def __str__(self):
+        if isinstance(self.id, dict):
+            return json.dumps(self.id, sort_keys=True, separators=(",", ":"))
+        return str(self.id)
 
 
 class DashIDGenerator:
@@ -71,3 +79,7 @@ class DashIDGenerator:
         if pattern:
             return State(self.get_pattern(pattern), property)
         return State(self.get_identifier(), property)
+
+    def __str__(self):
+        id_ = self.get_identifier()
+        return json.dumps(id_, sort_keys=True, separators=(",", ":"))
